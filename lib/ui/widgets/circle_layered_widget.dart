@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class CircleLayeredWidget extends StatelessWidget {
@@ -37,15 +35,6 @@ class CircleLayeredWidget extends StatelessWidget {
         color: color[count - 1],
         child: (count == layersCount) ? child : _getContainer(count + 1),
       ),
-    );
-  }
-
-  Color rand() {
-    return Color.fromRGBO(
-      Random.secure().nextInt(256),
-      Random.secure().nextInt(256),
-      Random.secure().nextInt(256),
-      1,
     );
   }
 }
