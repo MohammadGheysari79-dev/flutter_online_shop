@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const MaterialColor splashBackground = Colors.blue;
+  static const MaterialColor primry = Colors.blue;
 }

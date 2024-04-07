@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.splashBackground.shade600,
+      backgroundColor: AppColors.primry.shade600,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(
@@ -45,10 +45,10 @@ class _SplashScreenState extends State<SplashScreen> {
       width: 308.r,
       layersSpace: 21.r,
       color: [
-        AppColors.splashBackground.shade500,
-        AppColors.splashBackground.shade400,
-        AppColors.splashBackground.shade300,
-        AppColors.splashBackground.shade200,
+        AppColors.primry.shade500,
+        AppColors.primry.shade400,
+        AppColors.primry.shade300,
+        AppColors.primry.shade200,
       ],
       child: Column(
         children: [
@@ -88,10 +88,10 @@ class _SplashScreenState extends State<SplashScreen> {
       borderRadius: BorderRadius.circular(100),
       child: GestureDetector(
         onTap: () {
-          //todo: implement skip splash screen
+          Navigator.pushReplacementNamed(context, '/home');
         },
         child: Container(
-          color: AppColors.splashBackground.shade800,
+          color: AppColors.primry.shade800,
           width: 55.r,
           height: 55.r,
           child: Image.asset(
