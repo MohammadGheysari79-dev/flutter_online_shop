@@ -13,6 +13,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<Color> colors = [
+    Colors.red,
+    AppColors.primry,
+    Colors.green,
+    Colors.indigo,
+    Colors.pinkAccent,
+    Colors.amber,
+  ];
   final _pageViewController = PageController(
     initialPage: 1,
     viewportFraction: 0.8,
@@ -40,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return SizedBox(
       height: 90.r,
       child: ListView.builder(
-        itemCount: 10,
+        itemCount: 22,
         scrollDirection: Axis.horizontal,
         padding: EdgeInsets.symmetric(horizontal: 12.w),
         itemBuilder: (_, index) {
@@ -53,7 +61,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: 55.r,
                 height: 55.r,
                 radius: 38.r,
-                color: AppColors.primry,
+                color: colors[index % 6],
+                shadows: [
+                  BoxShadow(
+                    color: colors[index % 6],
+                    offset: const Offset(0, 10),
+                    blurRadius: 20,
+                    spreadRadius: -10,
+                  ),
+                ],
               ),
             ),
           );
