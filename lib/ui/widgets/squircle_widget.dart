@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Squircle extends StatelessWidget {
-  const Squircle({
+class SquircleWidget extends StatelessWidget {
+  const SquircleWidget({
     this.width,
     this.height,
     this.radius = 42,
     this.color,
     this.child,
+    this.shadows,
     super.key,
   });
 
@@ -15,6 +16,7 @@ class Squircle extends StatelessWidget {
   final double radius;
   final Color? color;
   final Widget? child;
+  final List<BoxShadow>? shadows;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,7 @@ class Squircle extends StatelessWidget {
       height: height,
       decoration: ShapeDecoration(
         color: color,
+        shadows: shadows,
         shape: ContinuousRectangleBorder(
           borderRadius: BorderRadius.circular(radius),
         ),

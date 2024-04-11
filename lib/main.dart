@@ -20,7 +20,10 @@ class Application extends StatelessWidget {
         // todo : replace with '/' to start from splash screen
         routes: {
           '/': (_) => const SplashScreen(),
-          '/home': (_) => const HomeScreen(),
+          '/home': (_) => const Directionality(
+                textDirection: TextDirection.rtl,
+                child: HomeScreen(),
+              ),
         },
       ),
     );
