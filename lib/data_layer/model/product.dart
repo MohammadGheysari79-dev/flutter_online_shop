@@ -11,4 +11,10 @@ class Product {
   String imageAddress;
   double? off;
   bool favorite = false;
+
+  int? priceByOff() {
+    if (off == null) return null;
+    double discount = price * (off! / 100.0);
+    return price - discount.toInt();
+  }
 }

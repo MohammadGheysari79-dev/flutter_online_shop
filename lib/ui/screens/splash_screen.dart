@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primry.shade600,
+      backgroundColor: AppColors.primary.shade600,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(
@@ -45,10 +45,10 @@ class _SplashScreenState extends State<SplashScreen> {
       width: 308.r,
       layersSpace: 21.r,
       color: [
-        AppColors.primry.shade500,
-        AppColors.primry.shade400,
-        AppColors.primry.shade300,
-        AppColors.primry.shade200,
+        AppColors.primary.shade500,
+        AppColors.primary.shade400,
+        AppColors.primary.shade300,
+        AppColors.primary.shade200,
       ],
       child: Column(
         children: [
@@ -91,7 +91,7 @@ class _SplashScreenState extends State<SplashScreen> {
           Navigator.pushReplacementNamed(context, '/home');
         },
         child: Container(
-          color: AppColors.primry.shade800,
+          color: AppColors.primary.shade800,
           width: 55.r,
           height: 55.r,
           child: Image.asset(

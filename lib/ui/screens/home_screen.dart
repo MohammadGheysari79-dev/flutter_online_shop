@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_online_shop/constants/app_colors.dart';
-import 'package:flutter_online_shop/ui/widgets/category_widget.dart';
-import 'package:flutter_online_shop/ui/widgets/squircle_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../../constants/app_colors.dart';
+import '../../data_layer/model/product.dart';
+import '../widgets/category_widget.dart';
+import '../widgets/product_widget.dart';
+import '../widgets/squircle_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,14 +16,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Color> colors = [
-    Colors.red,
-    AppColors.primry,
-    Colors.green,
-    Colors.indigo,
-    Colors.pinkAccent,
-    Colors.amber,
-  ];
   final _pageViewController = PageController(
     initialPage: 1,
     viewportFraction: 0.8,
@@ -29,16 +24,29 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(right: 12.w, bottom: 14.h),
-              child: const Text('دسته بندی'),
-            ),
-            _getCategoryList(),
-          ],
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              //todo : uncomment this part at the end
+              // Padding(
+              //   padding: EdgeInsets.only(right: 12.w, bottom: 14.h),
+              //   child: const Text('دسته بندی'),
+              // ),
+              // _getCategoryList(),
+              // todo : End part
+              ProductWidget(
+                product: Product(
+                  name: 'گوشی موبایل',
+                  price: 10000000,
+                  imageAddress: 'assets/images/product1.png',
+                  off: 10,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -61,11 +69,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: 55.r,
                 height: 55.r,
                 radius: 38.r,
-                color: colors[index % 6],
-                shadows: [
+                color: Colors.red,
+                //todo : get color from model
+                shadows: const [
                   BoxShadow(
-                    color: colors[index % 6],
-                    offset: const Offset(0, 10),
+                    color: Colors.red,
+                    offset: Offset(0, 10),
                     blurRadius: 20,
                     spreadRadius: -10,
                   ),
@@ -139,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
       effect: ExpandingDotsEffect(
         dotHeight: 9.r,
         dotWidth: 9.r,
-        activeDotColor: AppColors.primry.shade800,
+        activeDotColor: AppColors.primary.shade800,
         dotColor: Colors.white,
         expansionFactor: 4,
       ),
