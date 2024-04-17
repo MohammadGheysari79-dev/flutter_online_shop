@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -28,23 +29,21 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              //todo : uncomment this part at the end
-              // Padding(
-              //   padding: EdgeInsets.only(right: 12.w, bottom: 14.h),
-              //   child: const Text('دسته بندی'),
-              // ),
-              // _getCategoryList(),
-              // todo : End part
-              ProductWidget(
-                product: Product(
-                  name: 'گوشی موبایل',
-                  price: 10000000,
-                  imageAddress: 'assets/images/product1.png',
-                  off: 10,
+              _getBannerPart(),
+              Padding(
+                padding: EdgeInsets.only(
+                  top: 32.h,
+                  right: 12.w,
+                  bottom: 11.h,
                 ),
+                child: _getTitle('دسته بندی'),
               ),
+              _getCategoryList(),
+              SizedBox(height: 20.h),
+              _getProductTitle('پر فروش ترین ها'),
+              _getProductList(),
             ],
           ),
         ),
@@ -52,38 +51,54 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _getCategoryList() {
+  Widget _getList<E>(
+    List<E> content,
+    Widget child,
+    double height,
+  ) {
     return SizedBox(
-      height: 90.r,
+      height: height,
       child: ListView.builder(
-        itemCount: 22,
+        itemCount: content.length,
         scrollDirection: Axis.horizontal,
-        padding: EdgeInsets.symmetric(horizontal: 12.w),
+        padding: EdgeInsets.symmetric(horizontal: 6.w),
         itemBuilder: (_, index) {
           return Padding(
-            padding: EdgeInsets.only(left: 12.w),
-            child: CategoryWidget(
-              title: 'همه',
-              space: 8.r,
-              child: SquircleWidget(
-                width: 55.r,
-                height: 55.r,
-                radius: 38.r,
-                color: Colors.red,
-                //todo : get color from model
-                shadows: const [
-                  BoxShadow(
-                    color: Colors.red,
-                    offset: Offset(0, 10),
-                    blurRadius: 20,
-                    spreadRadius: -10,
-                  ),
-                ],
-              ),
-            ),
+            padding: EdgeInsets.symmetric(horizontal: 6.w),
+            child: child,
           );
         },
       ),
+    );
+  }
+
+  Widget _getCategoryList() {
+    List<Product> testData = [];
+    return _getList<Product>(
+      testData,
+      CategoryWidget(
+        title: 'همه',
+        space: 8.r,
+        textStyle: Theme.of(context).textTheme.titleMedium!.copyWith(
+              fontSize: 14,
+            ),
+        child: SquircleWidget(
+          width: 55.r,
+          height: 55.r,
+          radius: 38.r,
+          color: Colors.red,
+          //todo : get color from model
+          shadows: const [
+            BoxShadow(
+              color: Colors.red,
+              offset: Offset(0, 10),
+              blurRadius: 20,
+              spreadRadius: -10,
+            ),
+          ],
+        ),
+      ),
+      90.r,
     );
   }
 
@@ -153,5 +168,48 @@ class _HomeScreenState extends State<HomeScreen> {
         expansionFactor: 4,
       ),
     );
+  }
+
+  Widget _getProductTitle(String title) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 12.w),
+      child: Row(
+        children: [
+          _getTitle(title),
+          const Spacer(),
+          GestureDetector(
+            onTap: () {
+              //todo : show all
+            },
+            child: Row(
+              children: [
+                Text(
+                  'مشاهده همه',
+                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                        color: AppColors.primary.shade700,
+                      ),
+                ),
+                SizedBox(width: 4.w),
+                Icon(
+                  Icons.skip_previous,
+                  color: AppColors.primary.shade700,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Text _getTitle(String title) {
+    return Text(
+      title,
+      style: Theme.of(context).textTheme.titleSmall,
+    );
+  }
+
+  Widget _getProductList() {
+    return Container();
   }
 }
