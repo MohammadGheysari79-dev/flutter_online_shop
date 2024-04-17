@@ -77,17 +77,17 @@ flutter:
   fonts:
     - family: Gilroy
       fonts:
-        - asset: fonts/GilroyRegular.ttf
+        - asset: assets/fonts/GilroyRegular.ttf
           weight: 300
-        - asset: fonts/GilroyMedium.ttf
+        - asset: assets/fonts/GilroyMedium.ttf
           weight: 500
-        - asset: fonts/GilroyBold.ttf
+        - asset: assets/fonts/GilroyBold.ttf
           weight: 700
     - family: Shabnam
       fonts:
-        - asset: fonts/ShabnamMedium.ttf
+        - asset: assets/fonts/ShabnamMedium.ttf
           weight: 500
-        - asset: fonts/ShabnamBold.ttf
+        - asset: assets/fonts/ShabnamBold.ttf
           weight: 700
 
   # For details regarding fonts from package dependencies,
