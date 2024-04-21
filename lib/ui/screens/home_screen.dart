@@ -1,9 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../constants/app_colors.dart';
+import '../../data_layer/model/category.dart';
 import '../../data_layer/model/product.dart';
 import '../widgets/category_widget.dart';
 import '../widgets/product_widget.dart';
@@ -51,54 +51,115 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _getList<E>(
-    List<E> content,
-    Widget child,
-    double height,
-  ) {
+  Widget _getCategoryList() {
+    List<Category> testData = [
+      Category(
+        name: 'همه',
+        color: Colors.cyan,
+        imageAddress: 'imageAddress',
+      ),
+      Category(
+        name: 'آیفون',
+        color: Colors.amber,
+        imageAddress: 'imageAddress',
+      ),
+      Category(
+        name: 'مک بوک',
+        color: Colors.blueGrey,
+        imageAddress: 'imageAddress',
+      ),
+      Category(
+        name: 'اپل واچ',
+        color: Colors.green,
+        imageAddress: 'imageAddress',
+      ),
+      Category(
+        name: 'آی مک',
+        color: Colors.redAccent,
+        imageAddress: 'imageAddress',
+      ),
+      Category(
+        name: 'همه',
+        color: Colors.purpleAccent,
+        imageAddress: 'imageAddress',
+      ),
+      Category(
+        name: 'جدید',
+        color: Colors.black12,
+        imageAddress: 'imageAddress',
+      ),
+      Category(
+        name: 'تست',
+        color: Colors.yellow,
+        imageAddress: 'imageAddress',
+      ),
+    ];
     return SizedBox(
-      height: height,
+      height: 90.r,
       child: ListView.builder(
-        itemCount: content.length,
+        itemCount: testData.length,
         scrollDirection: Axis.horizontal,
         padding: EdgeInsets.symmetric(horizontal: 6.w),
         itemBuilder: (_, index) {
+          Category model = testData[index];
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: 6.w),
-            child: child,
+            child: CategoryWidget(
+              title: model.name,
+              space: 8.r,
+              textStyle: Theme.of(context).textTheme.titleMedium!.copyWith(
+                    fontSize: 14,
+                  ),
+              child: SquircleWidget(
+                width: 55.r,
+                height: 55.r,
+                radius: 38.r,
+                color: model.color,
+                shadows: [
+                  BoxShadow(
+                    color: model.color,
+                    offset: const Offset(0, 10),
+                    blurRadius: 20,
+                    spreadRadius: -10,
+                  ),
+                ],
+              ),
+            ),
           );
         },
       ),
     );
   }
 
-  Widget _getCategoryList() {
-    List<Product> testData = [];
-    return _getList<Product>(
-      testData,
-      CategoryWidget(
-        title: 'همه',
-        space: 8.r,
-        textStyle: Theme.of(context).textTheme.titleMedium!.copyWith(
-              fontSize: 14,
-            ),
-        child: SquircleWidget(
-          width: 55.r,
-          height: 55.r,
-          radius: 38.r,
-          color: Colors.red,
-          //todo : get color from model
-          shadows: const [
-            BoxShadow(
-              color: Colors.red,
-              offset: Offset(0, 10),
-              blurRadius: 20,
-              spreadRadius: -10,
-            ),
-          ],
-        ),
+  Widget _getProductList() {
+    List<Product> testData = [
+      Product(
+        name: 'آیفون 13 پرومکس',
+        price: 10000000,
+        imageAddress: 'imageAddress',
       ),
-      90.r,
+      Product(
+        name: 'آیفون 13 پرومکس',
+        price: 10000000,
+        imageAddress: 'imageAddress',
+      ),
+    ];
+    return SizedBox(
+      height: 200.r,
+      child: ListView.builder(
+        itemCount: testData.length,
+        scrollDirection: Axis.horizontal,
+        padding: EdgeInsets.symmetric(horizontal: 6.w),
+        itemBuilder: (_, index) {
+          Product model = testData[index];
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 6.w),
+            child: ProductWidget(
+              product: model,
+            ),
+          );
+        },
+      ),
     );
   }
 
@@ -207,9 +268,5 @@ class _HomeScreenState extends State<HomeScreen> {
       title,
       style: Theme.of(context).textTheme.titleSmall,
     );
-  }
-
-  Widget _getProductList() {
-    return Container();
   }
 }
