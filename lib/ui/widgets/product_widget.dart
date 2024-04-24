@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../constants/app_colors.dart';
 import '../../data_layer/model/product.dart';
@@ -19,8 +20,7 @@ class _ProductWidgetState extends State<ProductWidget> {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15),
       child: Container(
-        height: 216,
-        width: 160,
+        width: 138.w,
         color: Colors.white,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -28,8 +28,13 @@ class _ProductWidgetState extends State<ProductWidget> {
           children: [
             Expanded(child: _getTopStack()),
             Padding(
-              padding: const EdgeInsets.only(right: 10.0),
-              child: Text(widget.product.name),
+              padding: EdgeInsets.only(right: 10, bottom: 5.h),
+              child: Text(
+                widget.product.name,
+                style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                      color: Colors.black,
+                    ),
+              ),
             ),
             _getBottomContainer(),
           ],
@@ -50,9 +55,12 @@ class _ProductWidgetState extends State<ProductWidget> {
             width: 22,
             height: 22,
           ),
-          SizedBox(width: 6),
+          const SizedBox(width: 6),
           _getPricePart(),
-          const Text('تومان'),
+          Text(
+            'تومان',
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
         ],
       ),
     );
@@ -66,13 +74,17 @@ class _ProductWidgetState extends State<ProductWidget> {
       children: [
         Text(
           StringUtils.priceType('${widget.product.price}'),
-          style: TextStyle(
-            decoration: (haveOff) ? TextDecoration.lineThrough : null,
-          ),
+          style: (haveOff)
+              ? Theme.of(context).textTheme.bodySmall!.copyWith(
+                    decoration: TextDecoration.lineThrough,
+                    decorationColor: Colors.white,
+                  )
+              : Theme.of(context).textTheme.bodyMedium,
         ),
         if (haveOff)
           Text(
             StringUtils.priceType('${widget.product.priceByOff()}'),
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
       ],
     );
@@ -83,7 +95,7 @@ class _ProductWidgetState extends State<ProductWidget> {
       children: [
         _getFavoriteIcon(),
         Center(child: Image.asset('assets/images/product1.png')),
-        _getOffContainer(),
+        if (widget.product.off != null) _getOffContainer(),
       ],
     );
   }
@@ -112,14 +124,16 @@ class _ProductWidgetState extends State<ProductWidget> {
       bottom: 10,
       left: 10,
       child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 6.r, vertical: 1.h),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           color: Colors.red,
         ),
         alignment: Alignment.center,
-        width: 30,
-        height: 20,
-        child: Text('%${widget.product.off}'),
+        child: Text(
+          '%${widget.product.off}',
+          style: Theme.of(context).textTheme.bodySmall,
+        ),
       ),
     );
   }

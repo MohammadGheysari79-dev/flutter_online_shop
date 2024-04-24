@@ -3,6 +3,7 @@ class StringUtils {
     str = _reverse(str);
     str = _addComma(str);
     str = _reverse(str);
+    str = _removeLastComma(str);
     return str;
   }
 
@@ -23,5 +24,12 @@ class StringUtils {
       }
     }
     return res;
+  }
+
+  static String _removeLastComma(String str) {
+    if (str.startsWith(',')) {
+      str = str.substring(1);
+    }
+    return str;
   }
 }

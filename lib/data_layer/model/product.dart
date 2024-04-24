@@ -9,7 +9,7 @@ class Product {
   String name;
   int price;
   String imageAddress;
-  double? off;
+  int? off;
   bool favorite = false;
 
   int? priceByOff() {

@@ -22,18 +22,28 @@ class Application extends StatelessWidget {
           textTheme: const TextTheme(
             titleSmall: TextStyle(
               fontWeight: FontWeight.w500,
-              fontSize: 16,
+              fontSize: 14,
               color: AppColors.textTitle1,
             ),
             titleMedium: TextStyle(
               fontWeight: FontWeight.w700,
-              fontSize: 16,
-              color: AppColors.text2,
+              fontSize: 14,
+              color: Colors.black,
             ),
             bodyLarge: TextStyle(
               fontWeight: FontWeight.w500,
-              fontSize: 18,
-              color: AppColors.text2,
+              fontSize: 16,
+              color: Colors.black,
+            ),
+            bodyMedium: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 14,
+              color: Colors.white,
+            ),
+            bodySmall: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 10,
+              color: Colors.white,
             ),
           ),
         ),

@@ -108,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
               title: model.name,
               space: 8.r,
               textStyle: Theme.of(context).textTheme.titleMedium!.copyWith(
-                    fontSize: 14,
+                    fontSize: 12,
                   ),
               child: SquircleWidget(
                 width: 55.r,
@@ -135,12 +135,19 @@ class _HomeScreenState extends State<HomeScreen> {
     List<Product> testData = [
       Product(
         name: 'آیفون 13 پرومکس',
-        price: 10000000,
+        price: 100000000,
         imageAddress: 'imageAddress',
       ),
       Product(
         name: 'آیفون 13 پرومکس',
         price: 10000000,
+        off: 10,
+        imageAddress: 'imageAddress',
+      ),
+      Product(
+        name: 'آیفون 13 پرومکس',
+        price: 100000000,
+        off: 12,
         imageAddress: 'imageAddress',
       ),
     ];
